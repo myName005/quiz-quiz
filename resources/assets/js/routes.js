@@ -12,4 +12,7 @@ module.exports = [
 	route('/register','register')
 		.withName('register')
 		.withFilters(['guest']),
+		
+	route('/logout','logout')
+		.withName('logout'),
 ]
