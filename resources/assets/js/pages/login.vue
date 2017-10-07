@@ -70,12 +70,10 @@ module.exports = {
 					Token.store( response.data.token )
 
 					var path = $this.$route.query.redirect || '/'
-					console.log(path)
 					$this.$router.push(path)
 				}
 			})
 			.catch(function (err) {
-				console.dir(err)
 				if(err.response.data){
 					$this.error.has = true
 					$this.error.message = err.response.data.message
