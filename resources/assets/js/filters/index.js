@@ -1,4 +1,5 @@
 
 module.exports = [
-	require('./auth.js')
+	require('./auth.js'),
+	require('./guest.js')
 ]
