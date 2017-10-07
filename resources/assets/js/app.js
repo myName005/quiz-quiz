@@ -12,8 +12,10 @@ window.router = new Router({
 	routes:require('./routes.js')
 })
 
-router.beforeEach(require('./midlleware.js'))
-
+window.filters = require('./filters')
+filters.forEach(function (filter) {
+	router.beforeEach(filter.check)
+})
 
 window.app = new Vue({
 	el:'#app',

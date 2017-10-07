@@ -68,7 +68,10 @@ module.exports = {
 			.then(function (response) {
 				if( response.data.token ){
 					Token.store( response.data.token )
-					$this.$router.push('/register')
+
+					var path = $this.$route.query.redirect || '/'
+					console.log(path)
+					$this.$router.push(path)
 				}
 			})
 			.catch(function (err) {

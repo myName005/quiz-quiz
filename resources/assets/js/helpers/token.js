@@ -12,4 +12,8 @@ Token.check = function () {
 	return (Token.retrive() != null)
 }
 
+Token.remove = function () {
+	window.localStorage.removeItem('token')
+}
+
 module.exports = Token
