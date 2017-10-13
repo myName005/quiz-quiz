@@ -15,5 +15,7 @@ use Illuminate\Http\Request;
 Route::middleware(['throttle'])->group(function(){
 	Route::post('auth/register','JWT\AuthController@register');
 	Route::post('auth/login','JWT\AuthController@login');
+	Route::post('quiz/create','QuizController@create')
+		->middleware(['jwt.auth']);
 });
 
