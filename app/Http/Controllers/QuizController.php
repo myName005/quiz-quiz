@@ -55,4 +55,9 @@ class QuizController extends Controller
         $quiz->questions->load('answers');
         return response()->json( $quiz );
     }
+
+    public function list()
+    {
+        return Quiz::paginate(12);
+    }
 }

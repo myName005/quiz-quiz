@@ -19,5 +19,7 @@ Route::middleware(['throttle'])->group(function(){
 		->middleware(['jwt.auth']);
 	Route::get('quiz/{quiz}','QuizController@show')
 		->middleware(['jwt.auth']);
+	Route::get('quizes/','QuizController@list')
+		->middleware(['jwt.auth']);
 });
 
