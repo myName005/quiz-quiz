@@ -8,6 +8,8 @@ use JWTAuth;
 use App\Quiz;
 use App\Question;
 use App\Answer;
+use App\Http\Resources\QuizResource;
+
 class QuizController extends Controller
 {
     
@@ -45,5 +47,12 @@ class QuizController extends Controller
         }
     	
     	return print_r($request->all(), true);
+    }
+
+    public function show(Quiz $quiz)
+    {
+        $quiz->load('questions');
+        $quiz->questions->load('answers');
+        return response()->json( $quiz );
     }
 }
