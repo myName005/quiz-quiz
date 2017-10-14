@@ -18,7 +18,6 @@ class CreateQuestionsTable extends Migration
             $table->text('question');
             $table->integer('right_answer')->unsigned();
             $table->integer('quiz_id')->unsigned();
-            $table->timestamps();
         });
     }
 
