@@ -3,43 +3,14 @@
 		<h2 class="text-center">Register</h2>
 		<div class="form-horizontal">
 			
-			<div class="form-group has-feedback" :class="nameFieldClass">
-				<label class="control-label col-sm-2" for="name">Name:</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" placeholder="Enter Your Name" v-model="name">
-					<span class="help-block">
-						<template v-for="err in error.errors.name">
-							{{err}}
-						</template>
-					</span>
-				</div>
-			</div>
+			<field type="text" label="Name" placeholder="Enter your name" v-model="name"
+				:hasError="hasError('name')" :errorMessage="errorMessage('name')"></field>
 
-			<div class="form-group has-feedback" :class="emailFieldClass">
-				<label class="control-label col-sm-2" for="email">Email:</label>
-				<div class="col-sm-10">
-					<input type="email" class="form-control" placeholder="Enter email" v-model="email">
-					<span class="help-block">
-						<template v-for="err in error.errors.email">
-							{{err}}
-						</template>
-					</span>
-				</div>
-			</div>
-
-
-			<div class="form-group has-feedback" :class="passwordFieldClass">
-				<label class="control-label col-sm-2" for="password">Password:</label>
-				<div class="col-sm-10">
-					<input type="password" class="form-control" placeholder="Enter password" v-model="password">
-					<span class="help-block">
-						<template v-for="err in error.errors.password">
-							{{err}}
-						</template>
-					</span>
-				</div>
-
-			</div>
+			<field type="text" label="Email" placeholder="Enter your email" v-model="email"
+				:hasError="hasError('email')" :errorMessage="errorMessage('email')"></field>
+			
+			<field type="password" label="Password" placeholder="Enter a strong password" v-model="password"
+				:hasError="hasError('password')" :errorMessage="errorMessage('password')"></field>
 
 
 
@@ -68,6 +39,9 @@ module.exports = {
 			errors:{}
 		}
 	}},
+	components:{
+		'field':require('./../components/field.vue')
+	},
 	methods:{
 
 		register(){
@@ -98,29 +72,14 @@ module.exports = {
 				}
 			})
 		},
+		hasError(field){
+			return this.error.errors[field] !=null;
+		},
+		errorMessage(field){
+			if(this.hasError(field))
+				return this.error.errors[field].join('<br>');
+		},
+
 	},
-
-	computed:{
-		emailError(){
-			return (this.error.errors.email != null)
-		},
-		passwordError(){
-			return (this.error.errors.password != null)
-		},
-		nameError(){
-			return (this.error.errors.name != null)
-		},
-
-		emailFieldClass(){
-			return {'has-error':this.emailError }
-		},
-		passwordFieldClass(){
-			return {'has-error':this.passwordError}
-		},
-		nameFieldClass(){
-			return {'has-error':this.nameError}
-		},
-
-	}
 }
 </script>
